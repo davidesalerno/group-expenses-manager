@@ -26,10 +26,14 @@ public class TransactionService {
     TransactionMapper trasactionMapper;
 
     @WithSession
-    public Uni<Paginated<Transaction>> retrieveByAccountId(Long accountId) {
-        return transactionRepository.findByAccountAndAfterDate(accountId, LocalDate.now()).flatMap(found -> Uni.createFrom().item(new Paginated.PaginatedBuilder<Transaction>().items(found.stream().map(transaction -> trasactionMapper.toDTO(transaction)).toList()).page(0).build()));
+    public Uni<Paginated<Transaction>> retrieveByAccountId(Long accountId, Integer pageIndex, Integer pageSize) {
+        return transactionRepository.findByAccount(accountId ,pageIndex,pageSize).flatMap(found -> Uni.createFrom().item(new Paginated.PaginatedBuilder<Transaction>().items(found.stream().map(transaction -> trasactionMapper.toDTO(transaction)).toList()).page(pageIndex).build()));
     }
 
+    @WithSession
+    public Uni<Paginated<Transaction>> retrieveByAccountIdAfterDate(Long accountId, LocalDate afterDate, Integer pageIndex, Integer pageSize) {
+        return transactionRepository.findByAccountAndAfterDate(accountId, afterDate,pageIndex,pageSize).flatMap(found -> Uni.createFrom().item(new Paginated.PaginatedBuilder<Transaction>().items(found.stream().map(transaction -> trasactionMapper.toDTO(transaction)).toList()).page(pageIndex).build()));
+    }
     @WithSession
     public Uni<Transaction> retrieveById(Long id) {
         return transactionRepository.findById(id).map(item -> trasactionMapper.toDTO(item));
@@ -43,5 +47,10 @@ public class TransactionService {
     @WithTransaction
     public Uni<Boolean> deleteById(Long id) {
         return transactionRepository.deleteById(id);
+    }
+
+    @WithSession
+    public Uni<Paginated<Transaction>> listAll(Integer pageIndex, Integer pageSize) {
+        return transactionRepository.findAll().page(pageIndex,pageSize).list().flatMap(found -> Uni.createFrom().item(new Paginated.PaginatedBuilder<Transaction>().items(found.stream().map(transaction -> trasactionMapper.toDTO(transaction)).toList()).page(pageIndex).build()));
     }
 }

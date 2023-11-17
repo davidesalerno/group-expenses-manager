@@ -1,6 +1,7 @@
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
+import jakarta.ejb.Local;
 import net.davidesalerno.condoman.commons.dto.Transaction;
 import net.davidesalerno.condoman.transaction.resource.TransactionResource;
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,10 @@ import static org.hamcrest.Matchers.*;
 class TransactionResourceTest {
 
     @Test
-    void shouldCreateTransactionSuccessfully() {
-
+    void shouldCreateListAnDeleteTransactionSuccessfully() {
+        //TODO Split this test
         given().when()
-                .get("byaccount/1")
+                .get("by_account/1")
                 .then()
                 .statusCode(302)
                 .body("items.size()", is(0));
@@ -59,10 +60,29 @@ class TransactionResourceTest {
                 .body("date", is(LocalDate.now().toString()));
 
         given().when()
-                .get("byaccount/1")
+                .get("by_account/1")
                 .then()
                 .statusCode(302)
                 .body("items.size()", is(2));
+
+        given().when()
+                .get("by_account/1/after_date/"+LocalDate.now())
+                .then()
+                .statusCode(302)
+                .body("items.size()", is(2));
+
+        given().when()
+                .get("all")
+                .then()
+                .statusCode(302)
+                .body("items.size()", is(2));
+
+
+        given().when()
+                .get("by_account/1/after_date/"+LocalDate.now().plusDays(1))
+                .then()
+                .statusCode(302)
+                .body("items.size()", is(0));
 
         given().when()
                 .delete("1")
