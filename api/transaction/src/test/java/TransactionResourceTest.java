@@ -1,0 +1,79 @@
+import io.quarkus.test.common.http.TestHTTPEndpoint;
+import io.quarkus.test.junit.QuarkusTest;
+import io.restassured.http.ContentType;
+import net.davidesalerno.condoman.commons.dto.Transaction;
+import net.davidesalerno.condoman.transaction.resource.TransactionResource;
+import org.junit.jupiter.api.Test;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.*;
+
+@QuarkusTest
+@TestHTTPEndpoint(TransactionResource.class)
+class TransactionResourceTest {
+
+    @Test
+    void shouldCreateTransactionSuccessfully() {
+
+        given().when()
+                .get("byaccount/1")
+                .then()
+                .statusCode(302)
+                .body("items.size()", is(0));
+
+        Transaction transaction = new Transaction();
+        transaction.setAccountId(1L);
+        transaction.setAmount(new BigDecimal(100));
+        transaction.setDescription("test");
+        transaction.setType(Transaction.Type.EXPENSE);
+        transaction.setDate(LocalDate.now());
+        given()
+                .contentType(ContentType.JSON)
+                .body(transaction)
+                .when()
+                .post("")
+                .then()
+                .statusCode(201)
+                .body(is("{\"id\":1,\"accountId\":1,\"amount\":100,\"description\":\"test\",\"type\":\"EXPENSE\",\"date\":\""+LocalDate.now()+"\"}"));
+        transaction.setAmount(new BigDecimal(101));
+        given()
+                .contentType(ContentType.JSON)
+                .body(transaction)
+                .when()
+                .post("")
+                .then()
+                .statusCode(201)
+                .body(is("{\"id\":2,\"accountId\":1,\"amount\":101,\"description\":\"test\",\"type\":\"EXPENSE\",\"date\":\""+LocalDate.now()+"\"}"));
+
+        given().when()
+                .get("1")
+                .then()
+                .statusCode(302)
+                .body("id", is(1))
+                .body("accountId", is(1))
+                .body("amount", is(100))
+                .body("type", is("EXPENSE"))
+                .body("date", is(LocalDate.now().toString()));
+
+        given().when()
+                .get("byaccount/1")
+                .then()
+                .statusCode(302)
+                .body("items.size()", is(2));
+
+        given().when()
+                .delete("1")
+                .then()
+                .statusCode(200)
+                .body(is("true"));
+
+        given().when()
+                .delete("2")
+                .then()
+                .statusCode(200)
+                .body(is("true"));
+    }
+}

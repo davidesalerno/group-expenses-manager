@@ -1,2 +1,2 @@
-# condoman
-Condominium Management System
+# Condoman
+Condoman is Condominium Management System web application
