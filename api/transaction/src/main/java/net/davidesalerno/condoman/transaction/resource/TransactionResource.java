@@ -28,7 +28,7 @@ public class TransactionResource {
     @GET
     @Path("/{id}")
     public Uni<RestResponse<Transaction>> get(Long id) {
-        return transactionService.retrieveById(id).map(item -> ok(item).status(RestResponse.Status.FOUND).build()).onFailure().recoverWithItem(err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
+        return transactionService.retrieveById(id).map(item -> ok(item).build()).onFailure().recoverWithItem(err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
     }
 
     @DELETE
@@ -39,17 +39,17 @@ public class TransactionResource {
     @GET
     @Path("by_account/{accountId:\\d+}")
     public Uni<RestResponse<Paginated<Transaction>>> findByAccount(Long accountId, @QueryParam("page") @DefaultValue("0") int pageIndex, @QueryParam("size") @DefaultValue("12") int pageSize) {
-        return transactionService.retrieveByAccountId(accountId,pageIndex,pageSize).map(item -> ok(item).status(RestResponse.Status.FOUND).build()).onFailure().recoverWithItem( err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
+        return transactionService.retrieveByAccountId(accountId,pageIndex,pageSize).map(item -> ok(item).build()).onFailure().recoverWithItem( err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
     }
 
     @GET
     @Path("by_account/{accountId:\\d+}/after_date/{afterDate}")
     public Uni<RestResponse<Paginated<Transaction>>> findByAccountAndAfterDate(Long accountId, LocalDate afterDate, @QueryParam("page") @DefaultValue("0") int pageIndex, @QueryParam("size") @DefaultValue("12") int pageSize) {
-        return transactionService.retrieveByAccountIdAfterDate(accountId,afterDate,pageIndex,pageSize).map(item -> ok(item).status(RestResponse.Status.FOUND).build()).onFailure().recoverWithItem( err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
+        return transactionService.retrieveByAccountIdAfterDate(accountId,afterDate,pageIndex,pageSize).map(item -> ok(item).build()).onFailure().recoverWithItem( err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
     }
     @GET
     @Path("all")
     public Uni<RestResponse<Paginated<Transaction>>> listAll( @QueryParam("page") @DefaultValue("0") int pageIndex, @QueryParam("size") @DefaultValue("20") int pageSize) {
-        return transactionService.listAll(pageIndex,pageSize).map(item -> ok(item).status(RestResponse.Status.FOUND).build()).onFailure().recoverWithItem( err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
+        return transactionService.listAll(pageIndex,pageSize).map(item -> ok(item).build()).onFailure().recoverWithItem( err -> { Log.error(err); return RestResponse.status(RestResponse.Status.INTERNAL_SERVER_ERROR);});
     }
 }
