@@ -22,7 +22,7 @@ class TransactionResourceTest {
         given().when()
                 .get("by_account/1")
                 .then()
-                .statusCode(302)
+                .statusCode(200)
                 .body("items.size()", is(0));
 
         Transaction transaction = new Transaction();
@@ -52,7 +52,7 @@ class TransactionResourceTest {
         given().when()
                 .get("1")
                 .then()
-                .statusCode(302)
+                .statusCode(200)
                 .body("id", is(1))
                 .body("accountId", is(1))
                 .body("amount", is(100))
@@ -62,26 +62,26 @@ class TransactionResourceTest {
         given().when()
                 .get("by_account/1")
                 .then()
-                .statusCode(302)
+                .statusCode(200)
                 .body("items.size()", is(2));
 
         given().when()
                 .get("by_account/1/after_date/"+LocalDate.now())
                 .then()
-                .statusCode(302)
+                .statusCode(200)
                 .body("items.size()", is(2));
 
         given().when()
                 .get("all")
                 .then()
-                .statusCode(302)
+                .statusCode(200)
                 .body("items.size()", is(2));
 
 
         given().when()
                 .get("by_account/1/after_date/"+LocalDate.now().plusDays(1))
                 .then()
-                .statusCode(302)
+                .statusCode(200)
                 .body("items.size()", is(0));
 
         given().when()
