@@ -12,7 +12,7 @@ function App() {
   // Fetch transactions on component mount
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  });
 
   // Fetch transactions from API
   const fetchTransactions = async () => {
