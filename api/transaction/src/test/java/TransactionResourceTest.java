@@ -1,8 +1,8 @@
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
-import net.davidesalerno.condoman.commons.dto.Transaction;
-import net.davidesalerno.condoman.transaction.resource.TransactionResource;
+import net.davidesalerno.gem.commons.dto.Transaction;
+import net.davidesalerno.gem.transaction.resource.TransactionResource;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

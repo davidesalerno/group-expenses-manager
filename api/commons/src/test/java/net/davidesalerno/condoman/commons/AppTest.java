@@ -1,4 +1,4 @@
-package net.davidesalerno.condoman.commons;
+package net.davidesalerno.gem.commons;
 
 import static org.junit.Assert.assertTrue;
 
