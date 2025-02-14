@@ -5,6 +5,7 @@ The Group Expenses Manager API projects are the following:
 - [transaction](/transaction)
 - [account](/account)
 - [membership](/membership)
+- [invoice](/invoice)
 ## Libraries
 The following projects are libraries used across all the API project:
 - [commons](/commons)
