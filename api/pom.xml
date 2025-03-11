@@ -17,6 +17,7 @@
         <module>transaction</module>
         <module>account</module>
         <module>membership</module>
+        <module>invoice</module>
     </modules>
 
 
