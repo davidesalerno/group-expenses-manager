@@ -1,14 +1,15 @@
+package net.davidesalerno.gem.account.resource;
+
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
-import net.davidesalerno.gem.invoice.resource.invoiceResource;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
-@TestHTTPEndpoint(invoiceResource.class)
-public class InvoiceResourceTest {
+@TestHTTPEndpoint(AccountResource.class)
+public class AccountResourceTest {
     @Test
     void shouldTestTheHelloWorld() {
         given().when()
