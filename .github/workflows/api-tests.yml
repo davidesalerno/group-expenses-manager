@@ -22,9 +22,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: mvn --batch-mode --update-snapshots verify
+      - run: mvn --batch-mode --update-snapshots -Ddevelocity.scan.termsOfUse.url=https://gradle.com/help/legal-terms-of-use -Ddevelocity.scan.termsOfUse.accept=true -Dscan.tag.backend-engineer package
       - run: mkdir staging && cp **/target/*.jar staging
       - uses: actions/upload-artifact@v4
         with:
           name: Package
-          path: staging
+          path: ./api/staging
