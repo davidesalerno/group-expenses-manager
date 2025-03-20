@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.is;
 
 @QuarkusTest
 @TestHTTPEndpoint(invoiceResource.class)
-public class invoiceResourceTest {
+public class InvoiceResourceTest {
     @Test
     void shouldTestTheHelloWorld() {
         given().when()
