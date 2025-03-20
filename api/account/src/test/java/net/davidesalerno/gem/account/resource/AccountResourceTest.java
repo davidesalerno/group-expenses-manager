@@ -1,6 +1,7 @@
+package net.davidesalerno.gem.account.resource;
+
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
-import net.davidesalerno.gem.account.resource.AccountResource;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
