@@ -1,4 +1,5 @@
 package net.davidesalerno.gem.invoice.resource;
+
 import io.quarkus.test.common.http.TestHTTPEndpoint;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
@@ -15,6 +16,6 @@ public class InvoiceResourceIT {
                 .get("/invoice")
                 .then()
                 .statusCode(200)
-                .body( is("Hello World!"));
+                .body(is("Hello World!"));
     }
 }
