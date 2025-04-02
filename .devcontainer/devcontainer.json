@@ -9,7 +9,7 @@
 		"ghcr.io/devcontainers/features/node:1": {
 			"nodeGypDependencies": true,
 			"installYarnUsingApt": true,
-			"version": "latest",
+			"version": "22.14.0",
 			"pnpmVersion": "latest",
 			"nvmVersion": "latest"
 		},
@@ -21,7 +21,7 @@
 			"version": "latest",
 			"dockerDashComposeVersion": "latest"
 		}
-	}
+	},
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {}
@@ -38,4 +38,7 @@
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
+	"remoteEnv": {
+    	"NODE_OPTIONS": "--openssl-legacy-provider"
+  	}
 }
