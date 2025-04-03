@@ -5,7 +5,7 @@ import TransactionDetail from './components/TransactionDetail';
 import TransactionEdit from './components/TransactionEdit';
 
 function App() {
-  const { REACT_APP_API_ENDPOINT } = process.env;
+  const { VITE_API_ENDPOINT } = import.meta.env;
   const [transactions, setTransactions] = useState([]);
   const [selectedTransaction, setSelectedTransaction] = useState(null);
 
@@ -17,7 +17,7 @@ function App() {
   // Fetch transactions from API
   const fetchTransactions = async () => {
     try {
-      const response = await fetch(`${REACT_APP_API_ENDPOINT}/all`);
+      const response = await fetch(`${VITE_API_ENDPOINT}/all`);
       const data = await response.json();
       setTransactions(data);
     } catch (error) {
@@ -28,8 +28,8 @@ function App() {
   // Create a new transaction
   const addTransaction = async (transactionData) => {
     try {
-      console.log(REACT_APP_API_ENDPOINT);
-      const response = await fetch(`${REACT_APP_API_ENDPOINT}`, {
+      console.log(VITE_API_ENDPOINT);
+      const response = await fetch(`${VITE_API_ENDPOINT}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ function App() {
   // Update an existing Transaction
   const updateTransaction = async (transactionData) => {
     try {
-      const response = await fetch(`${REACT_APP_API_ENDPOINT}/${transactionData.id}`, {
+      const response = await fetch(`${VITE_API_ENDPOINT}/${transactionData.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ function App() {
   // Delete a transaction
   const deleteTransaction = async (transactionId) => {
     try {
-      await fetch(`${REACT_APP_API_ENDPOINT}/${transactionId}`, {
+      await fetch(`${VITE_API_ENDPOINT}/${transactionId}`, {
         method: 'DELETE',
       });
       const updatedTransactions = transactions.filter((transaction) => transaction.id !== transactionId);
