@@ -22,29 +22,33 @@ const InputForm = ({ addTransaction, updateTransaction, initialData }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>
-                Amount:
-                <input type="number" name="amount" value={formData.amount} onChange={handleInputChange} />
-            </label>
-            <label>
-                Account Id:
-                <input type="number" name="accountId" value={formData.accountId} onChange={handleInputChange} />
-            </label>
-            <label>
-                Description:
-                <input type="text" name="description" value={formData.description} onChange={handleInputChange} />
-            </label>
-            <label>
-                Type:
-                <input type="text" name="type" value={formData.type} onChange={handleInputChange} />
-            </label>
-            <label>
-                Date:
-                <input type="text" name="date" value={formData.date} onChange={handleInputChange} />
-            </label>
-            <button type="submit">Submit</button>
-        </form>
+        <div class="col-md-4 order-md-1">
+            <form onSubmit={handleSubmit}>
+                        <div class="col-md-6 mb-3">
+                            <label for="amount">Amount:</label>
+                            <input type="number" name="amount" id="amount" value={formData.amount} onChange={handleInputChange} class="form-control"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="accountId">Account Id:</label>
+                            <input type="number" name="accountId" id="accountId" value={formData.accountId} onChange={handleInputChange} class="form-control"/>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="description">Description:</label>
+                            <input type="text" name="description" id="description" value={formData.description} onChange={handleInputChange} class="form-control"/>
+                        </div>            
+                        <div class="col-md-6 mb-3">
+                            <label for="type">Type:</label>
+                            <input type="text" name="type" id="type" value={formData.type} onChange={handleInputChange} class="form-control" />
+                        </div>
+                        
+                        <div class="col-md-6 mb-3">
+                            <label for="date"> Date: </label>
+                            <input type="text" name="date" id="date" value={formData.date} onChange={handleInputChange} class="form-control"/>
+                        </div>       
+                        <button className="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+                    </form>
+        </div>
+        
     );
 };
 
