@@ -79,15 +79,26 @@ function App() {
 
   return (
       <div>
-        <h1>CRUD Application</h1>
-        <InputForm addTransaction={addTransaction} updateTransaction={updateTransaction} initialData={{ amount: 0, accountId: 0, description: '', type: '', date: new Date()  }} />
-        <TransactionList transactions={transactions} viewTransaction={setSelectedTransaction} editTransaction={setSelectedTransaction} deleteTransaction={deleteTransaction} />
-        {selectedTransaction ? (
-            <div>
-              <TransactionDetail transaction={selectedTransaction} />
-              <TransactionEdit transaction={selectedTransaction} updateTransaction={updateTransaction} />
-            </div>
-        ) : null}
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+          <h1>Transaction Application</h1>
+        </header>
+        <main class="container" role="main">
+          <div class="row">
+            <TransactionList transactions={transactions} viewTransaction={setSelectedTransaction} editTransaction={setSelectedTransaction} deleteTransaction={deleteTransaction} />
+            {selectedTransaction ? (
+                <div>
+                  <TransactionDetail transaction={selectedTransaction} />
+                  <TransactionEdit transaction={selectedTransaction} updateTransaction={updateTransaction} />
+                </div>
+            ) : null}
+            <InputForm addTransaction={addTransaction} updateTransaction={updateTransaction} initialData={{ amount: 0, accountId: 0, description: '', type: '', date: new Date()  }} />
+          </div>
+        </main>
+        <footer class="footer border-top">
+          <div class="container">
+            <span class="text-muted">Transaction app - Group Expense Manager</span>
+          </div>
+        </footer>
       </div>
   );
 }
