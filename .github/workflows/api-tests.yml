@@ -6,9 +6,11 @@ on:
       - 'main'
     paths:
       - 'api/**/*'
+      - '.github/**/*'
   pull_request:
     paths:
       - 'api/**/*'
+      - '.github/**/*'
 
 jobs:
   test:
