@@ -6,7 +6,7 @@ on:
       - 'api/**/*'
 
 jobs:
-  test:
+  merge:
     runs-on: ubuntu-latest
     services:
       docker:
@@ -23,11 +23,15 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-      - run: mvn --batch-mode --update-snapshots -Ddevelocity.scan.termsOfUse.url=https://gradle.com/help/legal-terms-of-use -Ddevelocity.scan.termsOfUse.accept=true -Dscan.tag.backend-engineer -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.push=true -Dquarkus.container-image.build=true -Dquarkus.container-image.group=davidesalerno package
+      - name: Log in to registry
+      # This is where you will update the PAT to GITHUB_TOKEN
+        run: echo "${{ secrets.DS_GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - run: mvn --batch-mode --update-snapshots -Ddevelocity.scan.termsOfUse.url=https://gradle.com/help/legal-terms-of-use -Ddevelocity.scan.termsOfUse.accept=true -Dscan.tag.backend-engineer -Dquarkus.container-image.registry=ghcr.io -Dquarkus.container-image.push=true -Dquarkus.container-image.build=true -Dquarkus.container-image.group=davidesalerno -Dquarkus.container-image.username=${{ github.actor }} -Dquarkus.container-image.password=${{ secrets.DS_GITHUB_TOKEN }}  package
       - run: mkdir staging && cp **/target/*.jar staging
       - uses: actions/upload-artifact@v4
         with:
           name: Package
           path: ./api/staging
         env:
-          GITHUB_TOKEN: ${{ secrets.DS_GITHUB_TOKEN }}
+          GHR_USR: ${{github.actor}}
+          GHR_PWD: ${{ secrets.DS_GITHUB_TOKEN }}
