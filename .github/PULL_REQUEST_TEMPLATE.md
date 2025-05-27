@@ -1,6 +1,6 @@
 <!--
 
-Welcome to Condoman project! Before contributing, make sure to:
+Welcome to Group Expenses Manager project! Before contributing, make sure to:
 
 - Rebase your branch on the latest upstream main
 - Link any relevant issues, PR's, or documentation

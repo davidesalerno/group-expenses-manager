@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug for Condoman
+description: Report a bug for Group Expenses Manager
 labels: kind/bug
 body:
   - type: markdown
@@ -51,7 +51,7 @@ body:
       label: Maven version
   - type: input
     attributes:
-      label:  Condoman version or git rev
+      label:  Group Expenses Manager version or git rev
   - type: textarea
     attributes:
       label: Additional information
