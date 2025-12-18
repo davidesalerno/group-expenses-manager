@@ -18,7 +18,7 @@ You can create a certificate for the Ingress Controller so to enable HTTPs traff
 You can create a certificate for the Ingress Controller to enable HTTPS traffic for your applications.
 ```
 - Remove "so" 
-- Change "HTTPs" → "HTTPS"
+- Correct "HTTPs" → "HTTPS"
 
 ---
 
@@ -81,7 +81,7 @@ You can provide this feedback on the PR by commenting:
 ```markdown
 Thanks for addressing the review comments! The PR looks much better. I have just a couple of minor suggestions:
 
-1. **Grammar fix** (line 9): Change "so to enable HTTPs" → "to enable HTTPS"
+1. **Grammar fix** (line 9): Change "so to enable HTTPs" → "to enable HTTPS" (remove "so" and correct the capitalization)
 
 2. **Parameter clarity**: The `<cluster_base_domain>` parameter is listed twice with different descriptions (once for CN, once for DNS names). Consider consolidating these or making it clearer they're the same parameter used in different fields.
 

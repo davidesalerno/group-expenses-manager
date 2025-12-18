@@ -54,7 +54,7 @@ You can create a certificate for the Ingress Controller to enable HTTPS traffic 
 ```
 
 **Additional Notes:**
-- "HTTPs" should be "HTTPS" (all caps)
+- Correct "HTTPs" to "HTTPS" (proper capitalization for the abbreviation)
 - Remove the redundant "so"
 
 ---
@@ -172,7 +172,7 @@ All marked with ✔️ by @dfitzmau.
 ## Recommendations
 
 ### High Priority
-1. **Fix grammatical error**: Change "so to enable HTTPs" → "to enable HTTPS"
+1. **Fix grammatical error**: Change "so to enable HTTPs" → "to enable HTTPS" (remove "so" and correct capitalization)
 2. **Resolve duplicate parameter**: Clarify the two uses of `<cluster_base_domain>` in parameter descriptions
 
 ### Medium Priority
