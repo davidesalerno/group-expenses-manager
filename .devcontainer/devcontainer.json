@@ -6,7 +6,7 @@
 	"service": "app",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
-		"ghcr.io/devcontainers/features/node:1": {
+		"ghcr.io/devcontainers/features/node:2": {
 			"nodeGypDependencies": true,
 			"installYarnUsingApt": true,
 			"version": "22.14.0",
